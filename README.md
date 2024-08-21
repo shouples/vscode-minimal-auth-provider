@@ -1,0 +1,1 @@
+# auth-provider-example README
