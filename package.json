@@ -32,7 +32,8 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "local-clicktest": "rm *.vsix && vsce package -o auth-provider-example-$(openssl rand -hex 4).vsix && code --install-extension ./*.vsix"
   },
   "devDependencies": {
     "@types/vscode": "^1.92.0",
