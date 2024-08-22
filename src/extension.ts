@@ -16,8 +16,11 @@ export async function activate(context: vscode.ExtensionContext) {
   await vscode.authentication.getSession(AUTH_PROVIDER_ID, [], { createIfNone: false });
 
   vscode.authentication.onDidChangeSessions(async (e) => {
-    console.warn("onDidChangeSessions", e);
-    await vscode.authentication.getSession(AUTH_PROVIDER_ID, [], { createIfNone: false });
+    // watch session changes to refresh the Accounts badge
+    console.log("onDidChangeSessions provider", e.provider);
+    if (e.provider.id === AUTH_PROVIDER_ID) {
+      await vscode.authentication.getSession(AUTH_PROVIDER_ID, [], { createIfNone: false });
+    }
   });
 }
 
